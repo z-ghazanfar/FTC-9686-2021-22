@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.gamepad.ButtonReader;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
+import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -28,7 +29,8 @@ public class MainTeleOp extends LinearOpMode {
     private GamepadEx gPad;
     private MecanumDrive drivetrain; // The Drivetrain
     private ToggleButtonReader buttonReaderY1, buttonReaderA1, buttonReaderX1, buttonReaderB1, buttonReaderdPadUp1, buttonReaderdPadDown1, buttonReaderdPadRight1, buttonReaderdPadLeft1; // Toggle Buttons on Gamepad 1
-    private ButtonReader rightTrigger1, leftTrigger1; // Triggers of controller
+    private TriggerReader rightTrigger1, leftTrigger1; // Triggers of controller
+    private ToggleButtonReader rightBumper, leftBumper, leftStickButton, rightStickButton;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -63,8 +65,14 @@ public class MainTeleOp extends LinearOpMode {
         buttonReaderB1 = new ToggleButtonReader(gPad, GamepadKeys.Button.B);
 
         // Initialize Other Gamepad Buttons
-        leftTrigger1 = new ButtonReader(gPad, GamepadKeys.Button.LEFT_BUMPER);
-        rightTrigger1 = new ButtonReader(gPad, GamepadKeys.Button.RIGHT_BUMPER);
+        leftTrigger1 = new TriggerReader(gPad, GamepadKeys.Trigger.RIGHT_TRIGGER);
+        rightTrigger1 = new TriggerReader(gPad, GamepadKeys.Trigger.RIGHT_TRIGGER);
+
+        leftBumper = new ToggleButtonReader(gPad, GamepadKeys.Button.LEFT_BUMPER);
+        rightBumper = new ToggleButtonReader(gPad, GamepadKeys.Button.RIGHT_BUMPER);
+
+        leftStickButton = new ToggleButtonReader(gPad, GamepadKeys.Button.LEFT_STICK_BUTTON);
+        rightStickButton = new ToggleButtonReader(gPad, GamepadKeys.Button.RIGHT_STICK_BUTTON);
 
         buttonReaderdPadUp1 = new ToggleButtonReader(gPad, GamepadKeys.Button.DPAD_UP);
         buttonReaderdPadDown1 = new ToggleButtonReader(gPad, GamepadKeys.Button.DPAD_DOWN);
